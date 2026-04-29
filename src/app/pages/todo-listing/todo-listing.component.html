@@ -1,0 +1,134 @@
+<div class="todo-page">
+
+    <!-- ─── PAGE HEADER ──────────────────────────────────────────── -->
+    <div class="page-header">
+      <div class="header-bg-decoration"></div>
+      <div class="header-inner">
+        <div class="title-group">
+          <div class="title-icon">
+            <i class="fas fa-check-double"></i>
+          </div>
+          <div>
+            <h1 class="page-title">Todo Manager</h1>
+            <p class="page-subtitle">Stay organised. Get things done.</p>
+          </div>
+        </div>
+        <div class="header-stats">
+          <div class="stat-badge">
+            <span class="stat-num">{{ todos.length }}</span>
+            <span class="stat-label">Tasks</span>
+          </div>
+          <div class="stat-badge accent">
+            <span class="stat-num">{{ pendingCount }}</span>
+            <span class="stat-label">Pending</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- ─── MAIN CONTENT ─────────────────────────────────────────── -->
+    <div class="main-container">
+  
+      <!-- Add New Todo Button -->
+      <button class="btn-add-todo" (click)="openAddDialog()">
+        <span class="btn-add-inner">
+          <span class="btn-icon-wrap">
+            <i class="fas fa-plus"></i>
+          </span>
+          <span class="btn-text">Add New Todo</span>
+        </span>
+        <i class="fas fa-arrow-right btn-arrow"></i>
+      </button>
+  
+      <!-- Empty State -->
+      <div class="empty-state" *ngIf="todos.length === 0">
+        <i class="fas fa-clipboard-list empty-icon"></i>
+        <p class="empty-text">No tasks yet. Click above to add your first todo!</p>
+      </div>
+  
+      <!-- ─── ANGULAR MATERIAL ACCORDION ───────────────────────── -->
+      <mat-accordion class="todo-accordion" *ngIf="todos.length > 0">
+  
+        <mat-expansion-panel
+          *ngFor="let todo of todos; let i = index"
+          class="todo-panel"
+          [ngClass]="{ 'panel-done': todo.status === 'Completed' }"
+          hideToggle
+        >
+  
+          <!-- ── Panel Header ─────────────────────────────────── -->
+          <mat-expansion-panel-header
+            class="todo-panel-header"
+            collapsedHeight="64px"
+            expandedHeight="64px"
+          >
+            <!-- Checkbox: stop propagation so it doesn't toggle panel -->
+            <span class="checkbox-wrap" (click)="$event.stopPropagation()">
+              <mat-checkbox
+                [checked]="todo.status === 'Completed'"
+                (change)="toggleComplete(todo, $event.checked)"
+                color="primary"
+                class="todo-checkbox"
+              ></mat-checkbox>
+            </span>
+  
+            <mat-panel-title class="panel-title-content">
+              <span class="status-dot" [ngClass]="dotClass(todo.status)"></span>
+              <span class="todo-title" [class.strikethrough]="todo.status === 'Completed'">
+                {{ todo.title }}
+              </span>
+            </mat-panel-title>
+  
+            <mat-panel-description class="panel-desc-content">
+              <span class="badge-status" [ngClass]="badgeClass(todo.status)">
+                {{ todo.status }}
+              </span>
+              <span class="chevron-wrap">
+                <i class="fas fa-chevron-down chevron-icon"></i>
+              </span>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+  
+          <!-- ── Expanded Body ─────────────────────────────────── -->
+          <div class="todo-body">
+            <div class="body-divider"></div>
+            <div class="body-inner">
+  
+              <div class="todo-meta">
+                <div class="meta-item">
+                  <i class="fas fa-calendar-alt meta-icon"></i>
+                  <span class="meta-label">Date</span>
+                  <span class="meta-value">{{ todo.date }}</span>
+                </div>
+                <div class="meta-item">
+                  <i class="fas fa-flag meta-icon"></i>
+                  <span class="meta-label">Status</span>
+                  <span class="meta-value status-text" [ngClass]="textClass(todo.status)">
+                    {{ todo.status }}
+                  </span>
+                </div>
+                <div class="meta-item detail-row" *ngIf="todo.detail">
+                  <i class="fas fa-align-left meta-icon"></i>
+                  <span class="meta-label">Detail</span>
+                  <span class="meta-value detail-text">{{ todo.detail }}</span>
+                </div>
+              </div>
+  
+              <div class="todo-actions">
+                <button class="action-btn edit-btn" title="Edit">
+                  <i class="fas fa-pencil-alt"></i>
+                </button>
+                <button class="action-btn delete-btn" title="Delete"
+                        (click)="deleteTodo(todo.id)">
+                  <i class="fas fa-trash-alt"></i>
+                </button>
+              </div>
+  
+            </div>
+          </div>
+  
+        </mat-expansion-panel>
+      </mat-accordion>
+  
+    </div>
+  </div>
