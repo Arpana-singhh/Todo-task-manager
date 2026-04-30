@@ -470,6 +470,55 @@
   .edit-btn:hover   { background: var(--info);   color: #fff; transform: scale(1.08); }
   .delete-btn:hover { background: var(--danger); color: #fff; transform: scale(1.08); }
   
+  .notification-wrap {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #fee2e2;
+    color: #ef4444;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: .2s;
+  }
+  
+  .notification-wrap:hover {
+    background: #ef4444;
+    color: #fff;
+  }
+
+  ::ng-deep .todo-panel-header {
+    display: flex !important;
+    align-items: center;
+  }
+  
+  ::ng-deep .todo-panel-header .mat-content {
+    display: flex !important;
+    align-items: center;
+    flex: 1;
+    gap: .75rem;
+  }
+  
+  .checkbox-wrap {
+    order: 1;
+  }
+  
+  .panel-title-content {
+    order: 2;
+    flex: 1;
+    min-width: 0;
+  }
+  
+  .panel-desc-content {
+    order: 3;
+    display: flex !important;
+    align-items: center;
+    gap: .6rem;
+    justify-content: flex-end;
+    flex-shrink: 0;
+  }
+
   /* ── Responsive ────────────────────────────────────── */
   @media (max-width: 575px) {
     .page-title   { font-size: 1.5rem; }

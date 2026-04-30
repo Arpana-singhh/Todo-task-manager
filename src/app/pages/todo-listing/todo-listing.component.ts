@@ -7,12 +7,14 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { AddTodoDialogComponent } from '../../components/add-todo-dialog/add-todo-dialog.component';
+import { TaskAlertDialogComponent } from '../../components/task-alert-dialog/task-alert-dialog.component';
 
 export interface TodoItem {
   id: number;
   title: string;
   detail: string;
-  date: string;
+  scheduledDate: Date;
+  endDate: Date | null;
   status: 'Pending' | 'In Progress' | 'Completed';
 }
 
@@ -38,28 +40,32 @@ export class TodoListingComponent {
       id: 1,
       title: 'Design landing page mockup',
       detail: 'Create wireframes for the homepage hero section, features block, and CTA. Share with the design team for review.',
-      date: '25 Apr 2026',
+      scheduledDate: new Date('2026-04-25'),
+      endDate: new Date('2026-05-02'),
       status: 'Pending',
     },
     {
       id: 2,
       title: 'Set up CI/CD pipeline',
       detail: 'Configure GitHub Actions workflow for build, test, and deploy stages. Integrate with staging environment.',
-      date: '20 Apr 2026',
+      scheduledDate: new Date('2026-04-26'),
+      endDate: new Date('2026-05-03'),
       status: 'Completed',
     },
     {
       id: 3,
       title: 'Write unit tests for auth module',
       detail: 'Cover login, registration, password reset, and token refresh flows. Target ≥85% code coverage.',
-      date: '28 Apr 2026',
+      scheduledDate: new Date('2026-04-27'),
+      endDate: new Date('2026-05-04'),
       status: 'In Progress',
     },
     {
       id: 4,
       title: 'Update project documentation',
       detail: '',   // intentionally empty to test conditional rendering
-      date: '30 Apr 2026',
+      scheduledDate: new Date('2026-04-28'),
+      endDate: new Date('2026-04-29'),
       status: 'Pending',
     },
   ];
@@ -78,20 +84,65 @@ export class TodoListingComponent {
     dialogRef.afterClosed().subscribe((result: Partial<TodoItem> | undefined) => {
       if (result?.title?.trim()) {
         const today = new Date();
-        const formatted = today.toLocaleDateString('en-GB', {
-          day: '2-digit', month: 'short', year: 'numeric',
-        });
+        // const formatted = new Date(today.getFullYear(), today.getMonth(), today.getDate());
 
         this.todos.push({
           id: Date.now(),
           title: result.title.trim(),
           detail: result.detail?.trim() ?? '',
-          date: formatted,
+          scheduledDate: today,
+          endDate: result.endDate ?? null,
           status: 'Pending',
         });
       }
     });
   }
+
+  // ── Open Edit-Todo dialog ──────────────────────────────────────
+  openEditDialog(todo: TodoItem): void {
+    const dialogRef = this.dialog.open(AddTodoDialogComponent, {
+      width: '500px',
+      maxWidth: '95vw',
+      panelClass: 'todo-dialog-panel',
+      disableClose: false,
+      data: todo
+    });
+  
+    dialogRef.afterClosed().subscribe((result: Partial<TodoItem> | undefined) => {
+      if (result?.title?.trim()) {
+        todo.title = result.title.trim();
+        todo.detail = result.detail?.trim() ?? '';
+        todo.endDate = result.endDate ?? null;
+      }
+    });
+  }
+
+  openTaskAlert(todo: TodoItem): void {
+    const dialogRef = this.dialog.open(TaskAlertDialogComponent, {
+      width: '500px',
+      panelClass: 'todo-dialog-panel',
+      data: todo
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      if (result?.endDate) {
+        todo.endDate = result.endDate;
+      }
+    });
+  }
+
+    // Show OverDue Icon if status is Pending and endDate is Past
+    showOverdueIcon(todo: TodoItem): boolean {
+      if (!todo.endDate) return false;
+    
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+    
+      const endDate = new Date(todo.endDate);
+      endDate.setHours(0, 0, 0, 0);
+    
+      return todo.status === 'Pending' && endDate < today;
+    }
 
   // ── Toggle completed state via checkbox ───────────────────────
   toggleComplete(todo: TodoItem, checked: boolean): void {

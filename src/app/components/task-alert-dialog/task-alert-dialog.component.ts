@@ -1,19 +1,23 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { MatDialogRef, MatDialogModule, MatDialogContent, MatDialogActions, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {
+  MAT_DIALOG_DATA,
+  MatDialogRef,
+  MatDialogModule,
+  MatDialogContent,
+  MatDialogActions
+} from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { TextFieldModule } from '@angular/cdk/text-field';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
-import { Inject } from '@angular/core';
 import { TodoItem } from '../../pages/todo-listing/todo-listing.component';
 
 @Component({
-  selector: 'app-add-todo-dialog',
+  selector: 'app-task-alert-dialog',
   standalone: true,
   imports: [
     CommonModule,
@@ -24,40 +28,34 @@ import { TodoItem } from '../../pages/todo-listing/todo-listing.component';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    TextFieldModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatIconModule,
-    
+    MatIconModule
   ],
-  templateUrl: './add-todo-dialog.component.html',
-  styleUrls: ['./add-todo-dialog.component.css'],
+  templateUrl: './task-alert-dialog.component.html',
+  styleUrls: ['./task-alert-dialog.component.css']
 })
-export class AddTodoDialogComponent {
+export class TaskAlertDialogComponent {
   taskName   = '';
   taskDetail = '';
   taskEndDate: Date | null = null;
 
   constructor(
-    private dialogRef: MatDialogRef<AddTodoDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Partial<TodoItem>
+    private dialogRef: MatDialogRef<TaskAlertDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: TodoItem
   ) {
     this.taskName = data?.title ?? '';
     this.taskDetail = data?.detail ?? '';
-    this.taskEndDate = data?.endDate ?? null;
+    this.taskEndDate = data.endDate;
   }
 
   save(): void {
-    if (!this.taskName.trim()) return;
-
     this.dialogRef.close({
-      title:  this.taskName.trim(),
-      detail: this.taskDetail.trim(),
-      endDate: this.taskEndDate,
+      endDate: this.taskEndDate
     });
   }
 
   cancel(): void {
-    this.dialogRef.close(undefined);
+    this.dialogRef.close();
   }
 }

@@ -83,6 +83,15 @@
               <span class="badge-status" [ngClass]="badgeClass(todo.status)">
                 {{ todo.status }}
               </span>
+
+              <span
+              *ngIf="showOverdueIcon(todo)"
+              class="notification-wrap"
+              (click)="openTaskAlert(todo); $event.stopPropagation()"
+              >
+                <i class="fas fa-bell"></i>
+              </span>
+              
               <span class="chevron-wrap">
                 <i class="fas fa-chevron-down chevron-icon"></i>
               </span>
@@ -97,8 +106,8 @@
               <div class="todo-meta">
                 <div class="meta-item">
                   <i class="fas fa-calendar-alt meta-icon"></i>
-                  <span class="meta-label">Date</span>
-                  <span class="meta-value">{{ todo.date }}</span>
+                  <span class="meta-label">Scheduled Date</span>
+                  <span class="meta-value">{{ todo.scheduledDate | date:'dd MMM yyyy' }}</span>
                 </div>
                 <div class="meta-item">
                   <i class="fas fa-flag meta-icon"></i>
@@ -112,14 +121,18 @@
                   <span class="meta-label">Detail</span>
                   <span class="meta-value detail-text">{{ todo.detail }}</span>
                 </div>
+                <div class="meta-item">
+                  <i class="fas fa-calendar-alt meta-icon"></i>
+                  <span class="meta-label">End Date</span>
+                  <span class="meta-value">{{ todo.endDate | date:'dd MMM yyyy'}}</span>
+                </div>
               </div>
   
               <div class="todo-actions">
-                <button class="action-btn edit-btn" title="Edit">
+                <button class="action-btn edit-btn" title="Edit" (click)="openEditDialog(todo)">
                   <i class="fas fa-pencil-alt"></i>
                 </button>
-                <button class="action-btn delete-btn" title="Delete"
-                        (click)="deleteTodo(todo.id)">
+                <button class="action-btn delete-btn" title="Delete" (click)="deleteTodo(todo.id)">
                   <i class="fas fa-trash-alt"></i>
                 </button>
               </div>

@@ -4,7 +4,7 @@
       <div class="dialog-title-icon">
         <i class="fas fa-tasks"></i>
       </div>
-      <h2 class="dialog-title">Add Task</h2>
+      <h2 class="dialog-title"> {{ data?.id ? 'Edit Task' : 'Add Task' }}</h2>
     </div>
     <button class="btn-dialog-close" (click)="cancel()">
       <i class="fas fa-times"></i>
@@ -59,7 +59,27 @@
         <mat-hint align="end">{{ taskDetail.length }} / 500</mat-hint>
       </mat-form-field>
     </div>
-  
+
+    <!-- End Date -->
+    <div class="field-group">
+      <label class="field-label" for="taskEndDate">
+        <i class="fas fa-calendar-alt label-icon"></i>
+        End Date
+      </label>
+    
+      <mat-form-field appearance="outline" class="full-width mat-field-custom">
+        <input
+          matInput
+          [matDatepicker]="picker"
+          id="taskEndDate"
+          [(ngModel)]="taskEndDate"
+          placeholder="Choose end date"
+        />
+    
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
   </mat-dialog-content>
   
   <!-- ── Dialog Footer ──────────────────────────────────── -->
@@ -70,6 +90,6 @@
     </button>
     <button class="btn-save" (click)="save()" [disabled]="!taskName.trim()">
       <i class="fas fa-check"></i>
-      Save Task
+      {{ data?.id ? 'Update Task' : 'Save Task' }}
     </button>
   </mat-dialog-actions>

@@ -1,0 +1,62 @@
+<div class="dialog-header warning-header">
+    <div class="dialog-title-group">
+      <div class="dialog-title-icon">
+        <i class="fas fa-bell"></i>
+      </div>
+      <h2 class="dialog-title">Task Deadline Alert</h2>
+    </div>
+  
+    <button class="btn-dialog-close" (click)="cancel()">
+      <i class="fas fa-times"></i>
+    </button>
+  </div>
+  
+  <mat-dialog-content class="dialog-body">
+    <div class="alert-box">
+      <i class="fas fa-triangle-exclamation"></i>
+      <p>
+        This task has passed its end date.
+        Please complete the task or update the end date to keep your task list accurate.
+      </p>
+    </div>
+
+    <div class="field-group">
+    <label class="field-label">Update End Date</label>
+    <mat-form-field appearance="outline" class="full-width mat-field-custom">
+        <input
+        matInput
+        [matDatepicker]="picker"
+        [(ngModel)]="taskEndDate"
+        />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    </div>
+  
+    <div class="field-group">
+    <label class="field-label">Task Name</label>
+    <mat-form-field appearance="outline" class="full-width mat-field-custom readonly-field">
+        <input matInput [value]="data.title" readonly />
+    </mat-form-field>
+    </div>
+    
+    <div class="field-group" *ngIf="data.detail?.trim()">
+    <label class="field-label">Task Detail</label>
+    <mat-form-field appearance="outline" class="full-width mat-field-custom readonly-field">
+        <textarea matInput [value]="data.detail" readonly rows="3"></textarea>
+    </mat-form-field>
+    </div>
+    
+    <div class="field-group">
+    <label class="field-label">Scheduled Date</label>
+    <mat-form-field appearance="outline" class="full-width mat-field-custom readonly-field">
+        <input matInput [value]="data.scheduledDate | date:'dd MMM yyyy'" readonly />
+    </mat-form-field>
+    </div>
+  
+  </mat-dialog-content>
+  
+  <mat-dialog-actions class="dialog-footer">
+    <button class="btn-cancel" (click)="cancel()">Close</button>
+    <button class="btn-save" (click)="save()">Update Date</button>
+  </mat-dialog-actions>
