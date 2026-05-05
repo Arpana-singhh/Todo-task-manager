@@ -16,13 +16,6 @@
   <circle cx="1120" cy="80" r="140" fill="rgba(255,255,255,0.18)" filter="url(#blur)"/>
   <circle cx="980" cy="290" r="150" fill="rgba(255,255,255,0.16)" filter="url(#blur)"/>
 
-  <g fill="rgba(255,255,255,0.92)">
-    <text x="64" y="152" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="44" font-weight="700">
-      Planner
-    </text>
-    <text x="64" y="205" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="22" font-weight="500" opacity="0.9">
-      Quick • Monthly • Daily
-    </text>
-  </g>
+  
 </svg>
 

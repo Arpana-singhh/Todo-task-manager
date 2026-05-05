@@ -2,62 +2,6 @@
    ADD TODO DIALOG – Component Styles
    ===================================================== */
    */
-  /* ── Dialog Header ─────────────────────────────────── */
-  .dialog-header {
-    background: linear-gradient(135deg, #3a56d4 0%, #6c8eff 100%);
-    padding: 1.35rem 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-radius: 12px 12px 0 0;   /* matches mat-dialog panel */
-    flex-shrink: 0;
-  }
-  
-  .dialog-title-group {
-    display: flex;
-    align-items: center;
-    gap: .75rem;
-  }
-  
-  .dialog-title-icon {
-    width: 38px;
-    height: 38px;
-    background: rgba(255,255,255,.22);
-    border-radius: var(--radius-sm);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    font-size: .95rem;
-    flex-shrink: 0;
-  }
-  
-  .dialog-title {
-    margin: 0;
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: #fff;
-    letter-spacing: -.02em;
-  }
-  
-  .btn-dialog-close {
-    width: 32px;
-    height: 32px;
-    background: rgba(255,255,255,.2);
-    border: none;
-    border-radius: var(--radius-sm);
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: .78rem;
-    cursor: pointer;
-    transition: background .2s;
-    flex-shrink: 0;
-  }
-  
-  .btn-dialog-close:hover { background: rgba(255,255,255,.35); }
-  
   /* ── Dialog Body ───────────────────────────────────── */
   .dialog-body {
     padding: 1.6rem 1.5rem 1rem !important;  /* override mat-dialog-content default */

@@ -1,27 +1,231 @@
-<div class="planner-page container py-4">
-  <div class="planner-hero mb-3">
-    <img
-      class="planner-hero-img"
-      src="/images/planner-hero.svg"
-      alt="Planner"
-      loading="lazy"
-    />
+<section class="planner-page">
+
+  <!-- ── HERO ─────────────────────────────────────────────── -->
+  <div class="hero">
+    <div class="hero-bg">
+      <div class="hero-orb hero-orb--1"></div>
+      <div class="hero-orb hero-orb--2"></div>
+      <div class="hero-orb hero-orb--3"></div>
+      <div class="hero-grid"></div>
+    </div>
+
+    <div class="hero-inner">
+      <div class="hero-badge">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+        Organize smarter, not harder
+      </div>
+
+      <h1 class="hero-title">
+        Your tasks,<br>
+        <span class="hero-title-accent">perfectly planned.</span>
+      </h1>
+
+      <p class="hero-subtitle">
+        Pick a planner view and start organizing your day, month, or quick tasks in seconds.
+        Three powerful views, one seamless experience.
+      </p>
+
+      <div class="hero-actions">
+        <a class="btn btn-primary-hero" routerLink="/todo">
+          Get started free
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a class="btn btn-ghost-hero" routerLink="/todomonth">
+          View Monthly Planner
+        </a>
+      </div>
+
+      <div class="hero-stats">
+        <div class="stat">
+          <span class="stat-num">3</span>
+          <span class="stat-label">Planner views</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-num">∞</span>
+          <span class="stat-label">Tasks supported</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-num">0</span>
+          <span class="stat-label">Setup required</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="hero-card-stack">
+        <div class="preview-card preview-card--back"></div>
+        <div class="preview-card preview-card--mid"></div>
+        <div class="preview-card preview-card--front">
+          <div class="pcard-header">
+            <div class="pcard-dot pcard-dot--red"></div>
+            <div class="pcard-dot pcard-dot--yellow"></div>
+            <div class="pcard-dot pcard-dot--green"></div>
+            <span class="pcard-title">Today's Tasks</span>
+          </div>
+          <div class="pcard-body">
+            <div class="task-item task-item--done">
+              <span class="task-check task-check--done">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </span>
+              <span class="task-text task-text--done">Review project proposal</span>
+              <span class="task-tag task-tag--blue">Work</span>
+            </div>
+            <div class="task-item task-item--done">
+              <span class="task-check task-check--done">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </span>
+              <span class="task-text task-text--done">Morning standup</span>
+              <span class="task-tag task-tag--purple">Meeting</span>
+            </div>
+            <div class="task-item">
+              <span class="task-check"></span>
+              <span class="task-text">Update design files</span>
+              <span class="task-tag task-tag--blue">Work</span>
+            </div>
+            <div class="task-item">
+              <span class="task-check"></span>
+              <span class="task-text">Send weekly report</span>
+              <span class="task-tag task-tag--green">Report</span>
+            </div>
+            <div class="task-item">
+              <span class="task-check"></span>
+              <span class="task-text">Client presentation prep</span>
+              <span class="task-tag task-tag--amber">Priority</span>
+            </div>
+          </div>
+          <div class="pcard-footer">
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 40%"></div>
+            </div>
+            <span class="progress-label">2 / 5 done</span>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div class="planner-top">
-      <div>
-        <img
-          class="planner-top-image"
-          src="/images/planner-task.jpg"
-          alt="Planner-Task"
-           loading="lazy"
-        />
-        
-      </div>
-      <div class="planner-actions">
-        <a class="btn btn-primary planner-btn" routerLink="/todo">QuickPlanner</a>
-        <a class="btn btn-outline-primary planner-btn" routerLink="/todomonth">Monthly Planner</a>
-        <a class="btn btn-outline-primary planner-btn" routerLink="/tododaily">Daily Planner</a>
-      </div>
+  <!-- ── PLANNER CARDS ───────────────────────────────────── -->
+  <div class="section section--cards">
+    <div class="section-header">
+      <p class="section-overline">Choose your view</p>
+      <h2 class="section-title">Three ways to plan your work</h2>
+      <p class="section-desc">Each planner is optimized for a specific workflow — pick what fits your style.</p>
+    </div>
+
+    <div class="planner-cards">
+
+      <!-- QuickPlanner -->
+      <a routerLink="/todo" class="pcard">
+        <div class="pcard-icon pcard-icon--primary">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/>
+            <polyline points="13 2 13 9 20 9"/>
+            <line x1="9" y1="14" x2="15" y2="14"/>
+            <line x1="9" y1="18" x2="13" y2="18"/>
+          </svg>
+        </div>
+        <div class="pcard-badge pcard-badge--primary">Most Popular</div>
+        <h3 class="pcard-name">QuickPlanner</h3>
+        <p class="pcard-desc">Capture tasks instantly without friction. Add, check off, and manage a focused to-do list in seconds.</p>
+        <ul class="pcard-features">
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Instant task capture
+          </li>
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Priority tagging
+          </li>
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Progress tracking
+          </li>
+        </ul>
+        <div class="pcard-cta">
+          Open QuickPlanner
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+      </a>
+
+      <!-- Monthly Planner -->
+      <a routerLink="/todomonth" class="pcard">
+        <div class="pcard-icon pcard-icon--success">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+            <line x1="16" y1="2" x2="16" y2="6"/>
+            <line x1="8" y1="2" x2="8" y2="6"/>
+            <line x1="3" y1="10" x2="21" y2="10"/>
+          </svg>
+        </div>
+        <h3 class="pcard-name">Monthly Planner</h3>
+        <p class="pcard-desc">See the full picture. Plan projects, deadlines, and recurring tasks across an entire month at a glance.</p>
+        <ul class="pcard-features">
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Full calendar view
+          </li>
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Deadline tracking
+          </li>
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Month overview
+          </li>
+        </ul>
+        <div class="pcard-cta">
+          Open Monthly Planner
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+      </a>
+
+      <!-- Daily Planner -->
+      <a routerLink="/tododaily" class="pcard">
+        <div class="pcard-icon pcard-icon--warning">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <polyline points="12 6 12 12 16 14"/>
+          </svg>
+        </div>
+        <h3 class="pcard-name">Daily Planner</h3>
+        <p class="pcard-desc">Time-block your day with precision. Schedule every hour and stay locked in on what matters most right now.</p>
+        <ul class="pcard-features">
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Hour-by-hour schedule
+          </li>
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Focus time blocks
+          </li>
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Daily summary
+          </li>
+        </ul>
+        <div class="pcard-cta">
+          Open Daily Planner
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+      </a>
+
+    </div>
   </div>
-</div>
+
+  <!-- ── BOTTOM CTA ──────────────────────────────────────── -->
+  <div class="cta-strip">
+    <div class="cta-strip-inner">
+      <div class="cta-strip-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+      </div>
+      <div>
+        <h3 class="cta-strip-title">Ready to get organized?</h3>
+        <p class="cta-strip-subtitle">Start with QuickPlanner — no setup, no friction.</p>
+      </div>
+      <a class="btn btn-cta" routerLink="/todo">Start planning now</a>
+    </div>
+  </div>
+
+</section>

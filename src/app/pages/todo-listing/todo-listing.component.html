@@ -1,33 +1,35 @@
 <div class="todo-page">
 
-    <!-- ─── PAGE HEADER ──────────────────────────────────────────── -->
-    <div class="page-header">
-      <div class="header-bg-decoration"></div>
-      <div class="header-inner">
-        <div class="title-group">
-          <div class="title-icon">
-            <i class="fas fa-check-double"></i>
+ 
+  
+    <!-- ─── MAIN CONTENT ─────────────────────────────────────────── -->
+    <div class="container">
+
+      <!-- ─── PAGE HEADER ──────────────────────────────────────────── -->
+      <div class="page-header">
+        <div class="header-bg-decoration"></div>
+        <div class="header-inner">
+          <div class="title-group">
+            <div class="title-icon">
+              <i class="fas fa-check-double"></i>
+            </div>
+            <div>
+              <h1 class="page-title">Todo Manager</h1>
+              <p class="page-subtitle">Stay organised. Get things done.</p>
+            </div>
           </div>
-          <div>
-            <h1 class="page-title">Todo Manager</h1>
-            <p class="page-subtitle">Stay organised. Get things done.</p>
-          </div>
-        </div>
-        <div class="header-stats">
-          <div class="stat-badge">
-            <span class="stat-num">{{ todos.length }}</span>
-            <span class="stat-label">Tasks</span>
-          </div>
-          <div class="stat-badge accent">
-            <span class="stat-num">{{ pendingCount }}</span>
-            <span class="stat-label">Pending</span>
+          <div class="header-stats">
+            <div class="stat-badge">
+              <span class="stat-num">{{ todos.length }}</span>
+              <span class="stat-label">Tasks</span>
+            </div>
+            <div class="stat-badge accent">
+              <span class="stat-num">{{ pendingCount }}</span>
+              <span class="stat-label">Pending</span>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  
-    <!-- ─── MAIN CONTENT ─────────────────────────────────────────── -->
-    <div class="main-container">
   
       <!-- Add New Todo Button -->
       <button class="btn-add-todo" (click)="openAddDialog()">

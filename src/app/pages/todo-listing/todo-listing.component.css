@@ -16,6 +16,9 @@
     padding: 10px;
     position: relative;
     overflow: hidden;
+    border-radius: 22px;
+    margin-top: 40px;
+    margin-bottom: 20px;
   }
   
   .header-bg-decoration {
@@ -101,11 +104,11 @@
                 text-transform: uppercase; letter-spacing: .05em; margin-top: .1rem; }
   
   /* ── Main Container ────────────────────────────────── */
-  .main-container {
+  /* .main-container {
     max-width: 960px;
     margin: 1.5rem auto;
     padding: 0 1.25rem 3rem;
-  }
+  } */
   
   /* ── Add Todo Button ───────────────────────────────── */
   .btn-add-todo {
