@@ -22,24 +22,6 @@
   /* =====================================================
    ADD TODO DIALOG – Component Styles
    ===================================================== */
-
-   :host {
-    --primary:       #4f6ef7;
-    --primary-dark:  #3a56d4;
-    --danger:        #ef4444;
-    --text-primary:  #1e293b;
-    --text-secondary:#64748b;
-    --text-muted:    #94a3b8;
-    --bg-card:       #ffffff;
-    --bg-footer:     #f8fafc;
-    --border-color:  #e2e8f0;
-    --radius-sm:     8px;
-    --radius-lg:     20px;
-  
-    font-family: 'Plus Jakarta Sans', 'Segoe UI', system-ui, sans-serif;
-    display: flex;
-    flex-direction: column;
-  }
   
   /* ── Dialog Header ─────────────────────────────────── */
   .dialog-header {
