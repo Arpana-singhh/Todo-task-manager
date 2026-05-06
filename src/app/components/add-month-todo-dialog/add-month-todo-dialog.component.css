@@ -1,0 +1,158 @@
+/* =====================================================
+   ADD MONTH TODO DIALOG – Component Styles
+   Matches existing Add Todo Dialog design system
+   ===================================================== */
+
+/* ── Month Context Strip ────────────────────────────── */
+.month-context-strip {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    padding: .6rem 1.5rem;
+    background: var(--primary-light);
+    border-bottom: 1px solid #dde3fc;
+    font-size: .8rem;
+    font-weight: 600;
+    color: var(--primary-dark);
+    letter-spacing: -.01em;
+  }
+  
+  .month-context-strip i {
+    color: var(--primary);
+    font-size: .85rem;
+  }
+  
+  /* ── Dialog Body ────────────────────────────────────── */
+  .dialog-body {
+    padding: 1.6rem 1.5rem 1rem !important;
+    background: var(--bg-card);
+    overflow-y: auto;
+    max-height: 60vh;
+  }
+  
+  .field-group {
+    display: flex;
+    flex-direction: column;
+    gap: .4rem;
+    margin-bottom: 1.25rem;
+  }
+  
+  .field-label {
+    font-size: .8rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: .4rem;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    cursor: default;
+  }
+  
+  .label-icon   { color: var(--primary); font-size: .78rem; }
+  .required-star { color: var(--danger); margin-left: .1rem; }
+  
+  .optional-tag {
+    font-size: .68rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    background: #f1f5f9;
+    border-radius: 999px;
+    padding: .1rem .55rem;
+    text-transform: none;
+    letter-spacing: 0;
+    margin-left: .2rem;
+  }
+  
+  /* Angular Material form field tweaks */
+  .full-width { width: 100%; }
+  
+  ::ng-deep .mat-field-custom .mdc-notched-outline__leading,
+  ::ng-deep .mat-field-custom .mdc-notched-outline__notch,
+  ::ng-deep .mat-field-custom .mdc-notched-outline__trailing {
+    border-color: var(--border-color) !important;
+  }
+  
+  ::ng-deep .mat-field-custom.mat-focused .mdc-notched-outline__leading,
+  ::ng-deep .mat-field-custom.mat-focused .mdc-notched-outline__notch,
+  ::ng-deep .mat-field-custom.mat-focused .mdc-notched-outline__trailing {
+    border-color: var(--primary) !important;
+  }
+  
+  ::ng-deep .mat-field-custom .mat-mdc-form-field-focus-overlay { opacity: 0 !important; }
+  
+  ::ng-deep .mat-field-custom input,
+  ::ng-deep .mat-field-custom textarea {
+    font-family: 'Plus Jakarta Sans', 'Segoe UI', system-ui, sans-serif;
+    font-size: .92rem;
+    color: var(--text-primary);
+  }
+  
+  /* ── Dialog Footer ──────────────────────────────────── */
+  .dialog-footer {
+    padding: .9rem 1.5rem 1.25rem !important;
+    border-top: 1px solid var(--border-color);
+    background: var(--bg-card);
+    display: flex !important;
+    justify-content: flex-end;
+    gap: .65rem;
+    flex-shrink: 0;
+    border-radius: 0 0 12px 12px;
+  }
+  
+  .btn-cancel {
+    background: transparent;
+    border: 1.5px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    color: var(--text-secondary);
+    font-size: .87rem;
+    font-weight: 600;
+    padding: .55rem 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: .45rem;
+    transition: all .2s;
+    font-family: inherit;
+  }
+  
+  .btn-cancel:hover {
+    background: #f1f5f9;
+    border-color: #cbd5e1;
+    color: var(--text-primary);
+  }
+  
+  .btn-save {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    border: none;
+    border-radius: var(--radius-sm);
+    color: #fff;
+    font-size: .87rem;
+    font-weight: 600;
+    padding: .55rem 1.4rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: .45rem;
+    transition: all .2s;
+    font-family: inherit;
+    box-shadow: 0 3px 10px rgba(79,110,247,.35);
+  }
+  
+  .btn-save:hover:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 16px rgba(79,110,247,.45);
+  }
+  
+  .btn-save:disabled {
+    opacity: .5;
+    cursor: not-allowed;
+    box-shadow: none;
+  }
+  
+  /* ── Global panel shape (add in global styles if ng-deep is restricted) ── */
+  ::ng-deep .todo-dialog-panel .mat-mdc-dialog-container .mdc-dialog__surface {
+    border-radius: 14px !important;
+    overflow: hidden;
+    padding: 0 !important;
+  }

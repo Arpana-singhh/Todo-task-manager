@@ -90,3 +90,26 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   }
   
   .btn-dialog-close:hover { background: rgba(255,255,255,.35); }
+
+  .month-mat-field {
+    flex: 1;
+    max-width: 280px;
+  }
+  
+  /* Match your existing border/font tokens */
+  ::ng-deep .month-mat-field .mdc-notched-outline__leading,
+  ::ng-deep .month-mat-field .mdc-notched-outline__notch,
+  ::ng-deep .month-mat-field .mdc-notched-outline__trailing {
+    border-color: #c7d2fe !important;
+  }
+  ::ng-deep .month-mat-field.mat-focused .mdc-notched-outline__leading,
+  ::ng-deep .month-mat-field.mat-focused .mdc-notched-outline__notch,
+  ::ng-deep .month-mat-field.mat-focused .mdc-notched-outline__trailing {
+    border-color: var(--primary) !important;
+  }
+  ::ng-deep .month-mat-field .mat-mdc-select-value-text {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    font-size: .92rem;
+    font-weight: 600;
+    color: var(--primary-dark);
+  }

@@ -1,0 +1,113 @@
+<!-- ── Dialog Header ──────────────────────────────────── -->
+<div class="dialog-header">
+    <div class="dialog-title-group">
+      <div class="dialog-title-icon">
+        <i class="fas fa-calendar-plus"></i>
+      </div>
+      <h2 class="dialog-title">{{ data?.id ? 'Edit Task' : 'Add Task' }}</h2>
+    </div>
+    <button class="btn-dialog-close" (click)="cancel()">
+      <i class="fas fa-times"></i>
+    </button>
+  </div>
+  
+  <!-- ── Month Context Strip ────────────────────────────── -->
+  <div class="month-context-strip">
+    <i class="fas fa-calendar-check"></i>
+    Planning for <strong>{{ monthLabel }}</strong>
+  </div>
+  
+  <!-- ── Dialog Body ────────────────────────────────────── -->
+  <mat-dialog-content class="dialog-body">
+  
+    <!-- Task Name -->
+    <div class="field-group">
+      <label class="field-label" for="taskName">
+        <i class="fas fa-pen-to-square label-icon"></i>
+        Task Name <span class="required-star">*</span>
+      </label>
+      <mat-form-field appearance="outline" class="full-width mat-field-custom">
+        <input
+          matInput
+          id="taskName"
+          [(ngModel)]="taskName"
+          placeholder="What needs to be done?"
+          #nameInput="ngModel"
+          required
+          maxlength="120"
+        />
+        <mat-hint align="end">{{ taskName.length }} / 120</mat-hint>
+        <mat-error *ngIf="nameInput.invalid && nameInput.touched">
+          Task name is required.
+        </mat-error>
+      </mat-form-field>
+    </div>
+  
+    <!-- Task Detail -->
+    <div class="field-group">
+      <label class="field-label" for="taskDetail">
+        <i class="fas fa-align-left label-icon"></i>
+        Task Detail
+        <span class="optional-tag">optional</span>
+      </label>
+      <mat-form-field appearance="outline" class="full-width mat-field-custom">
+        <textarea
+          matInput
+          id="taskDetail"
+          [(ngModel)]="taskDetail"
+          placeholder="Add more context, steps, or notes…"
+          rows="4"
+          cdkTextareaAutosize
+          cdkAutosizeMinRows="3"
+          cdkAutosizeMaxRows="7"
+          maxlength="500"
+        ></textarea>
+        <mat-hint align="end">{{ taskDetail.length }} / 500</mat-hint>
+      </mat-form-field>
+    </div>
+  
+    <!-- Task Date -->
+    <div class="field-group">
+      <label class="field-label" for="taskDate">
+        <i class="fas fa-calendar-day label-icon"></i>
+        Task Date <span class="required-star">*</span>
+      </label>
+      <mat-form-field appearance="outline" class="full-width mat-field-custom">
+        <input
+          matInput
+          [matDatepicker]="datePicker"
+          [matDatepickerFilter]="dateFilter"
+          [min]="minDate"
+          [max]="maxDate"
+          id="taskDate"
+          [(ngModel)]="taskDate"
+          placeholder="Select a date in {{ monthLabel }}"
+          #dateInput="ngModel"
+          required
+        />
+        <mat-datepicker-toggle matSuffix [for]="datePicker"></mat-datepicker-toggle>
+        <mat-datepicker #datePicker startView="month" [startAt]="minDate"></mat-datepicker>
+        <mat-hint>Only dates within {{ monthLabel }} are allowed</mat-hint>
+        <mat-error *ngIf="dateInput.invalid && dateInput.touched">
+          Please select a valid date within {{ monthLabel }}.
+        </mat-error>
+      </mat-form-field>
+    </div>
+  
+  </mat-dialog-content>
+  
+  <!-- ── Dialog Footer ──────────────────────────────────── -->
+  <mat-dialog-actions class="dialog-footer">
+    <button class="btn-cancel" (click)="cancel()">
+      <i class="fas fa-times"></i>
+      Cancel
+    </button>
+    <button
+      class="btn-save"
+      (click)="save()"
+      [disabled]="!taskName.trim() || !taskDate"
+    >
+      <i class="fas fa-check"></i>
+      {{ data?.id ? 'Update Task' : 'Save Task' }}
+    </button>
+  </mat-dialog-actions>
