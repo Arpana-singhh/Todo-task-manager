@@ -5,171 +5,13 @@
 
 /* ── CSS Variables ─────────────────────────────────── */
   /* ── Page Shell ────────────────────────────────────── */
-  .todo-page {
-    min-height: 100vh;
-    background: var(--bg-page);
-  }
-  
   /* ── Page Header ───────────────────────────────────── */
-  .page-header {
-    background: linear-gradient(135deg, #3a56d4 0%, #4f6ef7 55%, #6c8eff 100%);
-    padding: 10px;
-    position: relative;
-    overflow: hidden;
-    border-radius: 22px;
-    margin-top: 40px;
-    margin-bottom: 20px;
-  }
-  
-  .header-bg-decoration {
-    position: absolute;
-    inset: 0;
-    background-image:
-      radial-gradient(circle at 80% 20%, rgba(255,255,255,.13) 0%, transparent 50%),
-      radial-gradient(circle at 8%  85%, rgba(0,0,0,.08)       0%, transparent 40%);
-    pointer-events: none;
-  }
-  
-  .header-inner {
-    max-width: 960px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 1.25rem;
-    position: relative;
-    z-index: 1;
-  }
-  
-  .title-group {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-  
-  .title-icon {
-    width: 52px;
-    height: 52px;
-    background: rgba(255,255,255,.2);
-    backdrop-filter: blur(8px);
-    border-radius: var(--radius-md);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.35rem;
-    color: #fff;
-    border: 1px solid rgba(255,255,255,.25);
-    flex-shrink: 0;
-  }
-  
-  .page-title {
-    font-size: 1.9rem;
-    font-weight: 700;
-    color: #fff;
-    margin: 0;
-    letter-spacing: -.5px;
-    line-height: 1.15;
-  }
-  
-  .page-subtitle {
-    color: rgba(255,255,255,.75);
-    font-size: .875rem;
-    margin: .15rem 0 0;
-    font-weight: 400;
-  }
-  
-  .header-stats {
-    display: flex;
-    gap: .75rem;
-  }
-  
-  .stat-badge {
-    background: rgba(255,255,255,.18);
-    border: 1px solid rgba(255,255,255,.28);
-    border-radius: var(--radius-md);
-    padding: .5rem 1.1rem;
-    text-align: center;
-    backdrop-filter: blur(6px);
-    min-width: 68px;
-  }
-  
-  .stat-badge.accent {
-    background: rgba(249,115,22,.3);
-    border-color: rgba(249,115,22,.45);
-  }
-  
-  .stat-num   { display: block; font-size: 1.4rem; font-weight: 700; color: #fff; line-height: 1.1; }
-  .stat-label { display: block; font-size: .72rem; color: rgba(255,255,255,.78); font-weight: 500;
-                text-transform: uppercase; letter-spacing: .05em; margin-top: .1rem; }
-  
   /* ── Main Container ────────────────────────────────── */
   /* .main-container {
     max-width: 960px;
     margin: 1.5rem auto;
     padding: 0 1.25rem 3rem;
   } */
-  
-  /* ── Add Todo Button ───────────────────────────────── */
-  .btn-add-todo {
-    width: 100%;
-    background: var(--bg-card);
-    border: 2px dashed #c7d2fe;
-    border-radius: var(--radius-md);
-    padding: 1rem 1.5rem;
-    color: var(--primary);
-    font-weight: 600;
-    font-size: .95rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    cursor: pointer;
-    transition: all .25s ease;
-    box-shadow: var(--shadow-sm);
-    font-family: inherit;
-    letter-spacing: -.01em;
-  }
-  
-  .btn-add-todo:hover {
-    background: var(--primary-light);
-    border-color: var(--primary);
-    border-style: solid;
-    color: var(--primary-dark);
-    box-shadow: var(--shadow-md);
-    transform: translateY(-1px);
-  }
-  
-  .btn-add-todo:active { transform: translateY(0); }
-  
-  .btn-add-inner {
-    display: flex;
-    align-items: center;
-    gap: .75rem;
-  }
-  
-  .btn-icon-wrap {
-    width: 34px;
-    height: 34px;
-    background: var(--primary);
-    border-radius: var(--radius-sm);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    font-size: .85rem;
-    flex-shrink: 0;
-    transition: background .25s;
-  }
-  
-  .btn-add-todo:hover .btn-icon-wrap { background: var(--primary-dark); }
-  
-  .btn-arrow {
-    font-size: .8rem;
-    opacity: .45;
-    transition: opacity .25s, transform .25s;
-  }
-  
-  .btn-add-todo:hover .btn-arrow { opacity: .9; transform: translateX(3px); }
   
   /* ── Empty State ───────────────────────────────────── */
   .empty-state {
@@ -424,21 +266,8 @@
   .action-btn {
     width: 34px;
     height: 34px;
-    border: none;
-    border-radius: var(--radius-sm);
-    display: flex;
-    align-items: center;
-    justify-content: center;
     font-size: .78rem;
-    cursor: pointer;
-    transition: all .2s;
   }
-  
-  .edit-btn   { background: var(--info-light);   color: var(--info);   }
-  .delete-btn { background: var(--danger-light); color: var(--danger); }
-  
-  .edit-btn:hover   { background: var(--info);   color: #fff; transform: scale(1.08); }
-  .delete-btn:hover { background: var(--danger); color: #fff; transform: scale(1.08); }
   
   .notification-wrap {
     width: 30px;
@@ -491,8 +320,6 @@
 
   /* ── Responsive ────────────────────────────────────── */
   @media (max-width: 575px) {
-    .page-title   { font-size: 1.5rem; }
-    .header-inner { flex-direction: column; align-items: flex-start; }
     .badge-status { display: none; }
     .todo-title   { font-size: .85rem; }
     .body-inner   { flex-direction: column; }

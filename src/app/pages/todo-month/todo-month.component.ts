@@ -70,6 +70,7 @@ export class TodoMonthComponent implements OnInit {
 
   ngOnInit(): void {
     this._buildMonthOptions();
+    console.log('[TodoMonth] availableMonths:', this.availableMonths);
     // Default: current month
     const now = new Date();
     this.selectedMonthKey = this._toKey(now.getFullYear(), now.getMonth());
@@ -96,7 +97,9 @@ export class TodoMonthComponent implements OnInit {
 
   private _recompute(): void {
     const { year, month } = this.selectedMonthObj;
-
+    
+    console.log("filteredTasks", this.filteredTasks);
+    
     this.filteredTasks = this.tasks.filter(t => {
       const d = new Date(t.taskDate);
       return d.getFullYear() === year && d.getMonth() === month;
@@ -171,6 +174,7 @@ export class TodoMonthComponent implements OnInit {
           taskDate: new Date(result.taskDate),
           status:   'Pending',
         });
+        this._recompute();
       }
     });
   }
@@ -191,6 +195,7 @@ export class TodoMonthComponent implements OnInit {
         task.title    = result.title.trim();
         task.detail   = result.detail?.trim() ?? '';
         task.taskDate = new Date(result.taskDate);
+        this._recompute();
       }
     });
   }
