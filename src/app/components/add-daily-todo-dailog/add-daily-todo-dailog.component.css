@@ -1,0 +1,32 @@
+/* ── Readonly Date Field (unique to daily dialog) ─────────── */
+.readonly-date-box {
+  display: flex;
+  align-items: center;
+  gap: .65rem;
+  background: var(--bg-page);
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: .65rem 1rem;
+  cursor: not-allowed;
+}
+
+.readonly-date-icon { color: var(--text-muted); font-size: .8rem; }
+
+.readonly-date-text {
+  flex: 1;
+  font-size: .9rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.readonly-date-chip {
+  font-size: .68rem;
+  font-weight: 700;
+  padding: .2rem .6rem;
+  border-radius: 999px;
+  background: var(--primary-light);
+  color: var(--primary-dark);
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  border: 1px solid #c7d2fe;
+}
