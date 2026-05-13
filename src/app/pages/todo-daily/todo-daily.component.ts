@@ -6,6 +6,7 @@ import {
   AddDailyTodoDailogComponent,
   DailyDialogData,
 } from '../../components/add-daily-todo-dailog/add-daily-todo-dailog.component';
+import { TaskMoveAlertDailogComponent } from '../../components/task-move-alert-dailog/task-move-alert-dailog.component';
 
 export interface DailyTodoItem {
   id:       number;
@@ -187,5 +188,29 @@ export class TodoDailyComponent {
   deleteTask(id: number): void {
     this.tasks = this.tasks.filter(t => t.id !== id);
     this._recompute();
+  }
+
+  openMoveDialog(task: DailyTodoItem): void {
+    const ref = this.dialog.open(TaskMoveAlertDailogComponent, {
+      width: '520px',
+      maxWidth: '95vw',
+      panelClass: 'todo-dialog-panel',
+      disableClose: false,
+      data: task,
+    });
+
+    ref.afterClosed().subscribe((result?: Partial<DailyTodoItem>) => {
+      if (result?.taskDate) {
+        task.taskDate = new Date(result.taskDate);
+        this._recompute();
+      }
+    });
+  }
+
+  showOverdueIcon(task: DailyTodoItem): boolean {
+    if (task.status !== 'Pending') return false;
+    const today = new Date();
+    const startOfToday = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+    return new Date(task.taskDate).getTime() < startOfToday.getTime();
   }
 }

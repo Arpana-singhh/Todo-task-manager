@@ -1,0 +1,67 @@
+<div class="dialog-header warning-header">
+  <div class="dialog-title-group">
+    <div class="dialog-title-icon">
+      <i class="fas fa-calendar-day"></i>
+    </div>
+    <h2 class="dialog-title">Move Task To Today</h2>
+  </div>
+
+  <button class="btn-dialog-close" (click)="cancel()">
+    <i class="fas fa-times"></i>
+  </button>
+</div>
+
+<mat-dialog-content class="dialog-body">
+  <div class="alert-box">
+    <i class="fas fa-triangle-exclamation"></i>
+    <p>
+      This task date is in the past and the task is still <b>Pending</b>.
+      If needed, move it to today to keep your plan up to date.
+    </p>
+  </div>
+
+  <div class="field-group">
+    <label class="field-label">Move To Current Date</label>
+    <mat-form-field appearance="outline" class="full-width mat-field-custom">
+      <input
+        matInput
+        [matDatepicker]="picker"
+        [(ngModel)]="moveToDate"
+      />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </div>
+
+  <div class="field-group">
+    <label class="field-label">Task Name</label>
+    <mat-form-field appearance="outline" class="full-width mat-field-custom readonly-field">
+      <input matInput [value]="data.title" readonly />
+    </mat-form-field>
+  </div>
+
+  <div class="field-group" *ngIf="data.detail?.trim()">
+    <label class="field-label">Task Detail</label>
+    <mat-form-field appearance="outline" class="full-width mat-field-custom readonly-field">
+      <textarea matInput [value]="data.detail" readonly rows="3"></textarea>
+    </mat-form-field>
+  </div>
+
+  <div class="field-group">
+    <label class="field-label">Task Date</label>
+    <mat-form-field appearance="outline" class="full-width mat-field-custom readonly-field">
+      <input matInput [value]="data.taskDate | date:'dd MMM yyyy'" readonly />
+    </mat-form-field>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions class="dialog-footer">
+  <button class="btn-cancel" (click)="cancel()">
+    <i class="fas fa-times"></i>
+    Cancel
+  </button>
+  <button class="btn-save" (click)="save()">
+    <i class="fas fa-check"></i>
+    Yes
+  </button>
+</mat-dialog-actions>

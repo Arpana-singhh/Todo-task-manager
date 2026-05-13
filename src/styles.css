@@ -230,6 +230,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     box-shadow: var(--shadow-sm);
     font-family: inherit;
     letter-spacing: -.01em;
+    margin-bottom: 1.25rem;
   }
   
   .btn-add-todo:hover {
@@ -300,7 +301,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   display: flex;
   flex-direction: column;
   gap: .4rem;
-  margin-bottom: 1.25rem;
+  margin-bottom: 0.5rem;
 }
 
 .field-label {
@@ -673,8 +674,46 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   flex-shrink: 0;
 }
 
+.notification-wrap {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #fee2e2;
+  color: #ef4444;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.notification-wrap:hover {
+  background: #ef4444;
+  color: #fff;
+}
+
 /* ── Animations ──────────────────────────────────────────── */
 @keyframes fade-up {
   from { opacity: 0; transform: translateY(16px); }
   to   { opacity: 1; transform: translateY(0); }
+}
+
+
+
+/* ── Readonly Field Override (keeps metadata fields muted) ── */
+::ng-deep .readonly-field .mdc-text-field {
+  background: #f8fafc !important;
+  border-radius: 8px;
+}
+
+::ng-deep .readonly-field input,
+::ng-deep .readonly-field textarea {
+  color: #94a3b8 !important;
+  cursor: default;
+}
+
+::ng-deep .readonly-field .mdc-notched-outline__leading,
+::ng-deep .readonly-field .mdc-notched-outline__notch,
+::ng-deep .readonly-field .mdc-notched-outline__trailing {
+  border-color: #e2e8f0 !important;
 }

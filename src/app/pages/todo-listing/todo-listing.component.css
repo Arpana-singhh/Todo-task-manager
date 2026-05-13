@@ -28,7 +28,6 @@
     display: flex;
     flex-direction: column;
     gap: .75rem;
-    margin-top: 1.25rem;
   }
   
   /* Remove mat-accordion default box-shadow + border-radius */
@@ -269,24 +268,6 @@
     font-size: .78rem; /* slightly larger than the 32px global default */
   }
   
-  .notification-wrap {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background: #fee2e2;
-    color: #ef4444;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: .2s;
-  }
-  
-  .notification-wrap:hover {
-    background: #ef4444;
-    color: #fff;
-  }
-
   ::ng-deep .todo-panel-header {
     display: flex !important;
     align-items: center;

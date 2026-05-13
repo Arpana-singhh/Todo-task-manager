@@ -111,6 +111,15 @@
               {{ task.status }}
             </span>
 
+            <span
+              class="notification-wrap"
+              *ngIf="showOverdueIcon(task)"
+              (click)="openMoveDialog(task); $event.stopPropagation()"
+              title="Move to today"
+            >
+                <i class="fas fa-bell"></i>
+            </span>
+
             <!-- Actions -->
             <div class="task-actions">
               <button class="action-btn edit-btn" title="Edit" (click)="openEditDialog(task)">
