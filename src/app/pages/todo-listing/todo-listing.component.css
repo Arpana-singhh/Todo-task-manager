@@ -266,7 +266,7 @@
   .action-btn {
     width: 34px;
     height: 34px;
-    font-size: .78rem;
+    font-size: .78rem; /* slightly larger than the 32px global default */
   }
   
   .notification-wrap {

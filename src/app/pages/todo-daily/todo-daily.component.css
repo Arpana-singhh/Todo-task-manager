@@ -1,7 +1,4 @@
-.coming-soon {
-  padding: 28px 18px;
-  border: 1px dashed rgba(0, 0, 0, 0.18);
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.6);
+/* Page-specific header gradient (dark blue variant) */
+.page-header {
+  background: linear-gradient(135deg, #1a237e 0%, #3949ab 55%, #1565c0 100%);
 }
-

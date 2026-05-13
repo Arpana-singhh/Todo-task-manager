@@ -184,6 +184,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
               text-transform: uppercase; letter-spacing: .05em; margin-top: .1rem; }
 
   .action-btn {
+    width: 32px;
+    height: 32px;
+    font-size: .75rem;
     border: none;
     border-radius: var(--radius-sm);
     display: flex;
@@ -202,6 +205,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 @media (max-width: 600px) {
   .page-title { font-size: 1.5rem; }
   .header-inner { flex-direction: column; align-items: flex-start; }
+  .stat-badge.done { display: none; }
+  .task-row { flex-wrap: wrap; }
+  .task-status-badge { display: none; }
+  .task-actions { align-self: flex-end; }
+  .day-header { gap: .65rem; }
 }
 
   /* ── Add Todo Button ───────────────────────────────── */
@@ -264,4 +272,409 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   }
   
   .btn-add-todo:hover .btn-arrow { opacity: .9; transform: translateX(3px); }
-  
+
+/* ── Month Context Strip (shared by add-daily + add-month dialogs) ── */
+.month-context-strip {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  background: var(--primary-light);
+  border-bottom: 1px solid #dde3fc;
+  padding: .65rem 1.5rem;
+  font-size: .82rem;
+  font-weight: 600;
+  color: var(--primary-dark);
+}
+.month-context-strip i { color: var(--primary); font-size: .85rem; }
+
+/* ── Dialog Body ─────────────────────────────────────────── */
+.dialog-body {
+  padding: 1.6rem 1.5rem 1rem !important;
+  background: var(--bg-card);
+  overflow-y: auto;
+  max-height: 60vh;
+}
+
+/* ── Dialog Form Fields ──────────────────────────────────── */
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: .4rem;
+  margin-bottom: 1.25rem;
+}
+
+.field-label {
+  font-size: .8rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  cursor: default;
+}
+
+.label-icon    { color: var(--primary); font-size: .8rem; }
+.required-star { color: var(--danger); margin-left: .1rem; }
+
+.optional-tag {
+  font-size: .68rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  background: #f1f5f9;
+  border-radius: 999px;
+  padding: .1rem .55rem;
+  text-transform: none;
+  letter-spacing: 0;
+  margin-left: .2rem;
+}
+
+.full-width { width: 100%; }
+
+/* ── Angular Material Form Field Overrides ───────────────── */
+::ng-deep .mat-field-custom .mdc-notched-outline__leading,
+::ng-deep .mat-field-custom .mdc-notched-outline__notch,
+::ng-deep .mat-field-custom .mdc-notched-outline__trailing {
+  border-color: var(--border-color) !important;
+}
+::ng-deep .mat-field-custom.mat-focused .mdc-notched-outline__leading,
+::ng-deep .mat-field-custom.mat-focused .mdc-notched-outline__notch,
+::ng-deep .mat-field-custom.mat-focused .mdc-notched-outline__trailing {
+  border-color: var(--primary) !important;
+}
+::ng-deep .mat-field-custom .mat-mdc-form-field-focus-overlay { opacity: 0 !important; }
+::ng-deep .mat-field-custom input,
+::ng-deep .mat-field-custom textarea {
+  font-family: 'Plus Jakarta Sans', 'Segoe UI', system-ui, sans-serif;
+  font-size: .92rem;
+  color: var(--text-primary);
+}
+
+/* ── Dialog Footer ───────────────────────────────────────── */
+.dialog-footer {
+  padding: .9rem 1.5rem 1.25rem !important;
+  border-top: 1px solid var(--border-color);
+  background: var(--bg-card);
+  display: flex !important;
+  justify-content: flex-end;
+  gap: .65rem;
+  flex-shrink: 0;
+  border-radius: 0 0 12px 12px;
+}
+
+.btn-cancel {
+  background: transparent;
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  font-size: .87rem;
+  font-weight: 600;
+  padding: .55rem 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: .45rem;
+  transition: all .2s;
+  font-family: inherit;
+}
+.btn-cancel:hover {
+  background: #f1f5f9;
+  border-color: #cbd5e1;
+  color: var(--text-primary);
+}
+
+.btn-save {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  border: none;
+  border-radius: var(--radius-sm);
+  color: #fff;
+  font-size: .87rem;
+  font-weight: 600;
+  padding: .55rem 1.4rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: .45rem;
+  transition: all .2s;
+  font-family: inherit;
+  box-shadow: 0 3px 10px rgba(79,110,247,.35);
+}
+.btn-save:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 16px rgba(79,110,247,.45);
+}
+.btn-save:disabled {
+  opacity: .5;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* ── Dialog Panel Shape ──────────────────────────────────── */
+::ng-deep .todo-dialog-panel .mat-mdc-dialog-container .mdc-dialog__surface {
+  border-radius: 14px !important;
+  overflow: hidden;
+  padding: 0 !important;
+}
+
+/* ── Stat Badge Variants ─────────────────────────────────── */
+.stat-badge.accent {
+  background: rgba(249, 115, 22, .3);
+  border-color: rgba(249, 115, 22, .45);
+}
+.stat-badge.done {
+  background: rgba(34, 197, 94, .25);
+  border-color: rgba(34, 197, 94, .4);
+}
+
+/* ── Empty State (shared by daily/month pages) ───────────── */
+.empty-state {
+  text-align: center;
+  padding: 4rem 1rem;
+  color: var(--text-muted);
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+}
+
+.empty-icon-wrap {
+  width: 72px;
+  height: 72px;
+  background: var(--primary-light);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.25rem;
+  font-size: 1.8rem;
+  color: var(--primary);
+}
+
+.empty-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 .5rem;
+}
+
+.empty-sub {
+  font-size: .875rem;
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* ── Day Groups (shared by daily/month pages) ────────────── */
+.day-groups {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.day-group {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow .22s, transform .22s;
+  animation: fade-up .4s ease both;
+}
+
+.day-group:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.day-group--today {
+  border-color: rgba(79, 110, 247, .35);
+  box-shadow: 0 0 0 2px rgba(79, 110, 247, .12), var(--shadow-sm);
+}
+
+.day-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: .85rem 1.25rem;
+  background: #fafbff;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.day-group--today .day-header {
+  background: var(--primary-light);
+  border-bottom-color: #dde3fc;
+}
+
+.day-date-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-sm);
+  background: #e8edff;
+  border: 1px solid #c7d2fe;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.day-date-block--today {
+  background: var(--primary);
+  border-color: var(--primary-dark);
+}
+
+.day-num {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--primary-dark);
+  line-height: 1;
+}
+
+.day-date-block--today .day-num  { color: #fff; }
+
+.day-month {
+  font-size: .62rem;
+  font-weight: 700;
+  color: var(--primary);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin-top: .1rem;
+}
+
+.day-date-block--today .day-month { color: rgba(255, 255, 255, .85); }
+
+.day-meta {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  min-width: 0;
+}
+
+.day-name {
+  font-size: .92rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -.01em;
+}
+
+.today-chip {
+  font-size: .7rem;
+  font-weight: 700;
+  padding: .2rem .65rem;
+  border-radius: 999px;
+  background: var(--primary);
+  color: #fff;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+
+.day-count {
+  display: flex;
+  align-items: baseline;
+  gap: .25rem;
+  flex-shrink: 0;
+}
+
+.day-count-num   { font-size: 1.1rem; font-weight: 800; color: var(--text-primary); }
+.day-count-label { font-size: .75rem; font-weight: 500; color: var(--text-secondary); }
+
+/* ── Task List (shared by daily/month pages) ─────────────── */
+.task-list {
+  padding: .5rem .75rem .75rem;
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+
+.task-row {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  padding: .75rem 1rem;
+  border-radius: var(--radius-sm);
+  background: var(--bg-page);
+  border: 1px solid transparent;
+  transition: all .2s;
+  flex-wrap: nowrap;
+}
+
+.task-row:hover {
+  background: #f0f4ff;
+  border-color: #c7d2fe;
+}
+
+.task-row--done { opacity: .72; }
+
+.task-checkbox-wrap {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+
+::ng-deep .month-checkbox .mdc-checkbox__background      { border-radius: 5px !important; }
+::ng-deep .month-checkbox .mat-mdc-checkbox-touch-target { display: none; }
+
+.task-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: .2rem;
+}
+
+.task-title {
+  font-size: .9rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  letter-spacing: -.01em;
+  transition: color .2s;
+}
+
+.task-title--done {
+  text-decoration: line-through;
+  color: var(--text-muted);
+}
+
+.task-detail {
+  font-size: .78rem;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.4;
+}
+
+.task-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  font-size: .7rem;
+  font-weight: 700;
+  padding: .28rem .72rem;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.badge--pending   { background: var(--warning-light); color: #92400e; }
+.badge--completed { background: var(--success-light); color: #166534; }
+
+.task-actions {
+  display: flex;
+  gap: .4rem;
+  flex-shrink: 0;
+}
+
+/* ── Animations ──────────────────────────────────────────── */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
