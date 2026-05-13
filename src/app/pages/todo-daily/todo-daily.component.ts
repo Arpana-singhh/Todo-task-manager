@@ -30,14 +30,50 @@ export interface DayGroup {
   templateUrl: './todo-daily.component.html',
   styleUrls: ['./todo-daily.component.css'],
 })
-export class TodoDailyComponent implements OnInit {
 
-  tasks: DailyTodoItem[] = [];
+export class TodoDailyComponent {
+  dayGroups: DayGroup[]=[];
+  totalCount=0;
+  pendingCount=0;
+  doneCount=0;
 
-  dayGroups:    DayGroup[] = [];
-  totalCount  = 0;
-  pendingCount = 0;
-  doneCount   = 0;
+    tasks: DailyTodoItem[] = [
+    {
+      id: 1,
+      title: 'Morning standup',
+      detail: 'Attend daily team sync meeting',
+      taskDate: new Date('2026-05-11'),
+      status: 'Pending'
+    },
+    {
+      id: 2,
+      title: 'Fix login bug',
+      detail: 'Resolve token refresh issue on dashboard',
+      taskDate: new Date('2026-05-11'),
+      status: 'Completed'
+    },
+    {
+      id: 3,
+      title: 'Review pull request',
+      detail: 'Check planner module UI changes',
+      taskDate: new Date('2026-05-12'),
+      status: 'Pending'
+    },
+    {
+      id: 4,
+      title: 'Write documentation',
+      detail: 'Add usage notes for daily planner component',
+      taskDate: new Date('2026-05-12'),
+      status: 'Pending'
+    },
+    {
+      id: 5,
+      title: 'Refactor service',
+      detail: 'Clean up API response mapping',
+      taskDate: new Date('2026-05-13'),
+      status: 'Completed'
+    }
+  ];
 
   constructor(private dialog: MatDialog) {}
 
@@ -45,14 +81,14 @@ export class TodoDailyComponent implements OnInit {
     this._recompute();
   }
 
-  // ── Heading ───────────────────────────────────────────
+    // ── Heading ───────────────────────────────────────────
   get todayHeading(): string {
     return new Date().toLocaleDateString('en-GB', {
       weekday: 'long', day: 'numeric', month: 'long', year: 'numeric',
     });
   }
 
-  // ── Recompute groups & stats ──────────────────────────
+    // ── Recompute groups & stats ──────────────────────────
   private _recompute(): void {
     const map = new Map<string, DailyTodoItem[]>();
 
@@ -63,9 +99,12 @@ export class TodoDailyComponent implements OnInit {
       map.get(key)!.push(t);
     });
 
+    console.log(map)
+
     const today  = new Date();
     const groups: DayGroup[] = [];
 
+  
     map.forEach(tasks => {
       const d = new Date(tasks[0].taskDate);
       groups.push({
@@ -80,6 +119,8 @@ export class TodoDailyComponent implements OnInit {
       });
     });
 
+    console.log("groups", groups)
+
     // Today's group floats to top; rest sorted newest-first
     this.dayGroups = groups.sort((a, b) => {
       if (a.isToday) return -1;
@@ -87,12 +128,13 @@ export class TodoDailyComponent implements OnInit {
       return b.date.getTime() - a.date.getTime();
     });
 
+    console.log("dayGroups" , this.dayGroups)
+
     this.totalCount   = this.tasks.length;
     this.pendingCount = this.tasks.filter(t => t.status !== 'Completed').length;
     this.doneCount    = this.tasks.filter(t => t.status === 'Completed').length;
   }
 
-  // ── Add ───────────────────────────────────────────────
   openAddDialog(): void {
     const ref = this.dialog.open(AddDailyTodoDailogComponent, {
       width: '500px',
@@ -116,7 +158,7 @@ export class TodoDailyComponent implements OnInit {
     });
   }
 
-  // ── Edit ──────────────────────────────────────────────
+   // ── Edit ──────────────────────────────────────────────
   openEditDialog(task: DailyTodoItem): void {
     const ref = this.dialog.open(AddDailyTodoDailogComponent, {
       width: '500px',
